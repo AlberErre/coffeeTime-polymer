@@ -8,6 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<!-- init dependencies -->
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -27,14 +28,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="my-view3.html">
 <link rel="lazy-import" href="my-view404.html">
 
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<!-- paper elements -->
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+
+<!-- icons -->
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/image-icons.html">
+
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
 <dom-module id="my-app">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
-        --app-primary-color: #4285f4;
+        --app-primary-color:#ecb879;
         --app-secondary-color: black;
 
         display: block;
+        padding: 10px;
       }
 
       app-drawer-layout:not([narrow]) [drawer-toggle] {
@@ -53,12 +67,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .drawer-list {
         margin: 0 20px;
       }
-      
-      .coffeeIcon {
-        font-size: 2.5em;
-        position: relative;
-        left: 35%;
-      }
 
       .drawer-list a {
         display: block;
@@ -72,6 +80,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
+      
+      paper-fab {
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        background-color: var(--app-primary-color);
+        color: white;
+      }
+      
     </style>
 
     <app-location
@@ -88,16 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-        <app-toolbar>
-          <div class="coffeeIcon">☕</div>
-        </app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="[[rootPath]]view1">View One</a>
-          <a name="view2" href="[[rootPath]]view2">View Two</a>
-          <a name="view3" href="[[rootPath]]view3">View Three</a>
-        </iron-selector>
-      </app-drawer>
+      <paper-fab elevation="3" id="fab" on-click="_newContact" icon="add"></paper-fab>
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
@@ -105,22 +113,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>Coffee Time</div>
+            <div main-title>
+              Are you up for a coffee? <span style="font-size: 2em;">☕️</span> 
+            </div>
           </app-toolbar>
         </app-header>
-
-        <iron-pages
-            selected="[[page]]"
-            attr-for-selected="name"
-            fallback-selection="view404"
-            role="main">
-          <my-view1 name="view1"></my-view1>
-          <my-view2 name="view2"></my-view2>
-          <my-view3 name="view3"></my-view3>
-          <my-view404 name="view404"></my-view404>
-        </iron-pages>
+      
+        <div class="card">
+          <div class="circle">1</div>
+          <h1>View One</h1>
+          <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
+          <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+        </div>
+        
       </app-header-layout>
+      
     </app-drawer-layout>
+    
   </template>
 
   <script>
@@ -138,6 +147,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             reflectToAttribute: true,
             observer: '_pageChanged',
           },
+          selectedContact: {
+            type: Object,
+            value: undefined,
+          },
           routeData: Object,
           subroute: Object,
           // This shouldn't be neccessary, but the Analyzer isn't picking up
@@ -150,6 +163,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return [
           '_routePageChanged(routeData.page)',
         ];
+      }
+            
+      _newContact() {
+
       }
 
       _routePageChanged(page) {
