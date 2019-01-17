@@ -34,6 +34,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!-- paper elements -->
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 
+<!-- font awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
 <!-- icons -->
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/image-icons.html">
@@ -41,6 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="my-app">
+  <link rel="import" type="css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <template>
     <style include="shared-styles">
       :host {
@@ -50,7 +54,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 10px;
       }
-
+      
+      app-drawer-layout {
+        background: url(http://www.graphicartsunit.com/images/noise.png);
+      }
+      
       app-drawer-layout:not([narrow]) [drawer-toggle] {
         display: none;
       }
@@ -89,6 +97,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: white;
       }
       
+      .footerButtonsContainer {
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      
+      .footerButtonsItem {
+        display: flex;
+        text-align: center;
+        border-radius: 6px;
+        width: 30px;
+        padding: 10px;
+        margin: 10px;
+        background-color: var(--app-primary-color);
+        color: #eeeeee!important;
+        box-shadow: 0 1rem 1rem -1rem rgba(10,10,10,.2);
+      }
+
+                
+      app-toolbar {
+        display: flex;
+        justify-content: center;
+      }
+      
+      app-header {
+        border-bottom-left-radius: 30%;
+        border-bottom-right-radius: 30%;
+      }
+      
+      .headerText {
+        font-size: 1.8em;
+      }
+      
+      .topBodyContainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      
+      .indieText {
+        font-family: 'Indie Flower';
+      }
+                
     </style>
 
     <app-location
@@ -102,32 +156,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}">
     </app-route>
-
+      
     <app-drawer-layout fullbleed narrow="{{narrow}}">
-      <!-- Drawer content -->
-      <paper-fab elevation="3" id="fab" on-click="_newContact" icon="add"></paper-fab>
-
+                
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
-
+        
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <div class="footerButtonsContainer">
+            <a class="footerButtonsItem" name="list-coffeeTime" href="[[rootPath]]list-coffeeTime"><i class="fas fa-coffee"></i></a>
+            <a class="footerButtonsItem" name="register-coffeeTime" href="[[rootPath]]register-coffeeTime"><i class="fas fa-plus"></i></a>
+          </div>
+        </iron-selector>
+            
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
-            <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>
-              Are you up for a coffee? <span style="font-size: 2em;">☕️</span> 
+            <div class="indieText headerText">
+              Coffe Time
             </div>
           </app-toolbar>
         </app-header>
-      
-        <div class="card">
-          <div class="circle">1</div>
-          <h1>View One</h1>
-          <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-          <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+        
+        <div class="topBodyContainer indieText">
+            Are you up for a coffee? 
+            <span style="font-size: 2em;">☕️</span>
         </div>
+
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="view404"
+            role="main">
+          <my-view1 name="view1"></my-view1>
+          <my-view2 name="view2"></my-view2>
+          <my-view3 name="view3"></my-view3>
+          <my-view404 name="view404"></my-view404>
+        </iron-pages>
         
       </app-header-layout>
-      
     </app-drawer-layout>
     
   </template>
@@ -165,10 +231,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         ];
       }
             
-      _newContact() {
-
-      }
-
       _routePageChanged(page) {
         // If no page was found in the route data, page will be an empty string.
         // Default to 'view1' in that case.
@@ -193,6 +255,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _showPage404() {
         this.page = 'view404';
       }
+            
     }
 
     window.customElements.define(MyApp.is, MyApp);
