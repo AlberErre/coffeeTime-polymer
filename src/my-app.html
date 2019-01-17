@@ -23,13 +23,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
 
-<link rel="lazy-import" href="my-view1.html">
-<link rel="lazy-import" href="my-view2.html">
-<link rel="lazy-import" href="my-view3.html">
-<link rel="lazy-import" href="my-view404.html">
-
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+
+<link rel="import" href="list-coffeetime.html">
+<link rel="import" href="register-coffeetime.html">
+<link rel="lazy-import" href="my-view404.html">
 
 <!-- paper elements -->
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
@@ -111,13 +110,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
         border-radius: 6px;
         width: 30px;
-        padding: 10px;
         margin: 10px;
         background-color: var(--app-primary-color);
         color: #eeeeee!important;
         box-shadow: 0 1rem 1rem -1rem rgba(10,10,10,.2);
       }
-
                 
       app-toolbar {
         display: flex;
@@ -164,8 +161,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <div class="footerButtonsContainer">
-            <a class="footerButtonsItem" name="list-coffeeTime" href="[[rootPath]]list-coffeeTime"><i class="fas fa-coffee"></i></a>
-            <a class="footerButtonsItem" name="register-coffeeTime" href="[[rootPath]]register-coffeeTime"><i class="fas fa-plus"></i></a>
+            <a class="footerButtonsItem" name="list-coffeetime" href="[[rootPath]]list-coffeetime"><i class="fas fa-coffee"></i></a>
+            <a class="footerButtonsItem" name="register-coffeetime" href="[[rootPath]]register-coffeetime"><i class="fas fa-plus"></i></a>
           </div>
         </iron-selector>
             
@@ -187,8 +184,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="my-view404"
             role="main">
-          <list-coffeeTime name="list-coffeeTime"></list-coffeeTime>
-          <register-coffeeTime name="register-coffeeTime"></register-coffeeTime>
+            
+          <list-coffeetime name="list-coffeetime"></list-coffeetime>
+          <register-coffeetime name="register-coffeetime"></register-coffeetime>
           <my-view404 name="my-view404"></my-view404>
         </iron-pages>
         
@@ -233,7 +231,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _routePageChanged(page) {
         // If no page was found in the route data, page will be an empty string.
         // Default to 'view1' in that case.
-        this.page = page || 'list-coffeeTime';
+        this.page = page || 'list-coffeetime';
 
         // Close a non-persistent drawer when the page & route are changed.
         if (!this.$.drawer.persistent) {
