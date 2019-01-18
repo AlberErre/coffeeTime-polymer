@@ -20,16 +20,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+      
+      .innerText {
+        font-size: 1.5em;
+        background: #ecb879;
+        color: black;
+      }
+      
+      .itemContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 33vw;
+        padding: 20px;
+        font-family: 'Indie Flower';
+      }
+      
+      .wrapContainer {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
     </style>
     
-    <dom-repeat items="{{coffeeList}}">
-      <template>
-        <div class="card">
-            <div class="circle"></div>
-            <h1>View Two</h1>
-        </div>
-      </template>
-    </dom-repeat>
+    <div class="wrapContainer">
+      <dom-repeat 
+          items="{{coffeeList}}"
+          as="coffeeListItem">
+        <template>
+          <div class="card itemContainer">
+              <h1 class="circle innerText">
+                [[coffeeListItem.hour]]
+              </h1>
+              <h1>
+                [[coffeeListItem.name]]
+              </h1>
+          </div>
+        </template>
+      </dom-repeat>
+    </div>
+    
   </template>
 
   <script>

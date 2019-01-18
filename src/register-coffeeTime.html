@@ -9,6 +9,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="register-coffeetime">
@@ -19,14 +22,57 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+      
+      .registerContainer {
+        max-width: 60vw;
+        margin: auto;
+      }
+      
+      .formContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+      
+      .indieText {
+        font-family: 'Indie Flower';
+      }
+      
+      .buttonStyling {
+        max-height: 50px;
+        min-width: 15vw;
+        background: #ecb879;
+        color: white;
+        font-family: 'Indie Flower';
+        font-size: 1.2em;
+        font-weight: 600;
+        text-transform: lowercase;
+      }
+      
+      .inputsDimensions {
+        min-width: 35vw;
+      }
+      
     </style>
 
-    <div class="card">
-      <div class="circle"></div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-      <button on-click="addCoffeeToList">Add coffee</button>
+    <div class="card registerContainer">
+      <h1 class="indieText">Register your coffe time here!</h1>
+      
+      <div class="formContainer">
+        
+        <div class="inputsDimensions">
+          <paper-input placeholder="Your name..."></paper-input>
+          <paper-input placeholder="Your hour..."></paper-input>  
+        </div>
+        
+        <paper-button raised class="buttonStyling" on-click="addCoffeeToList">
+          Add Time
+        </paper-button>
+
+      </div>
+
     </div>
   </template>
   

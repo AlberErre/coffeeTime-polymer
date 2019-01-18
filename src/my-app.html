@@ -93,7 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         bottom: 5%;
         right: 5%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-around;
       }
       
@@ -131,7 +131,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .indieText {
         font-family: 'Indie Flower';
       }
-                
+                      
     </style>
 
     <app-location
@@ -176,9 +176,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="my-view404"
             role="main">
-            
-          <list-coffeetime name="list-coffeetime" coffee-list="{{coffeeList}}"></list-coffeetime>
           
+          <list-coffeetime name="list-coffeetime" coffee-list="{{coffeeList}}"></list-coffeetime>
+        
           <register-coffeetime name="register-coffeetime"></register-coffeetime>
           <my-view404 name="my-view404"></my-view404>
         </iron-pages>
@@ -200,7 +200,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return {
           coffeeList: {
             type: Array,
-            value: () => [1,2,3],
+            value: () => [
+              {
+                hour: "11:30",
+                name: "Alber Erre"
+              },
+              {
+                hour: "11:35",
+                name: "Cristian Alegría"  
+              },
+              {
+                hour: "11:20",
+                name: "Silvia Gimenez"  
+              },
+              {
+                hour: "11:35",
+                name: "Cristian Alegría"  
+              },
+              {
+                hour: "11:20",
+                name: "Silvia Gimenez"  
+              },
+              {
+                hour: "11:35",
+                name: "Cristian Alegría"  
+              },
+              {
+                hour: "11:20",
+                name: "Silvia Gimenez"  
+              },
+              {
+                hour: "11:35",
+                name: "Cristian Alegría"  
+              },
+              {
+                hour: "11:20",
+                name: "Silvia Gimenez"  
+              },
+            ],
             notify: true,
           },
           page: {
