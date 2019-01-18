@@ -12,4 +12,7 @@ This serves the app at `http://127.0.0.1:8081`
 
 ### Images
 
+![list-coffeeTime](https://raw.githubusercontent.com/AlberErre/coffeeTime-polymer/master/list-coffeeTime.png)
+
+![register-coffeeTime](https://raw.githubusercontent.com/AlberErre/coffeeTime-polymer/master/register-coffeTime.png)
 
