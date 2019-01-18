@@ -177,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="my-view404"
             role="main">
             
-          <list-coffeetime name="list-coffeetime" coffee-list="coffeeList"></list-coffeetime>
+          <list-coffeetime name="list-coffeetime" coffee-list="{{coffeeList}}"></list-coffeetime>
           
           <register-coffeetime name="register-coffeetime"></register-coffeetime>
           <my-view404 name="my-view404"></my-view404>
@@ -208,7 +208,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             reflectToAttribute: true,
             observer: '_pageChanged',
           },
-          routeData: Object,
+          routeData: {
+            type: Object,
+          },
           subroute: Object,
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
