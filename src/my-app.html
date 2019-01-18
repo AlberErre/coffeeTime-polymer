@@ -54,6 +54,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
       }
       
+      :host::before {
+        opacity: 0!important;
+      }
+            
       app-drawer-layout {
         background: url(http://www.graphicartsunit.com/images/noise.png);
       }
@@ -116,6 +120,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app-header {
         border-bottom-left-radius: 30%;
         border-bottom-right-radius: 30%;
+      }
+      
+      app-header::before {
+        box-shadow: none!important;
       }
       
       .headerText {
