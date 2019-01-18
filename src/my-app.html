@@ -70,7 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
-
+      
       .drawer-list {
         margin: 0 20px;
       }
@@ -87,17 +87,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
-      
-      paper-fab {
-        position: fixed;
-        bottom: 5%;
-        right: 5%;
-        background-color: var(--app-primary-color);
-        color: white;
-      }
-      
+            
       .footerButtonsContainer {
-        position: absolute;
+        position: fixed;
         bottom: 5%;
         right: 5%;
         display: flex;
@@ -185,9 +177,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="my-view404"
             role="main">
             
-          <list-coffeetime name="list-coffeetime" hour="11.30"></list-coffeetime>
+          <list-coffeetime name="list-coffeetime" coffee-list="coffeeList"></list-coffeetime>
           
-          <register-coffeetime name="register-coffeetime" coffee-list="coffeeList"></register-coffeetime>
+          <register-coffeetime name="register-coffeetime"></register-coffeetime>
           <my-view404 name="my-view404"></my-view404>
         </iron-pages>
         
@@ -208,18 +200,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return {
           coffeeList: {
             type: Array,
-            value: () => {
-              []
-            },
+            value: () => [1,2,3],
+            notify: true,
           },
           page: {
             type: String,
             reflectToAttribute: true,
             observer: '_pageChanged',
-          },
-          selectedContact: {
-            type: Object,
-            value: undefined,
           },
           routeData: Object,
           subroute: Object,
