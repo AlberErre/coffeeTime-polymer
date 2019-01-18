@@ -185,8 +185,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="my-view404"
             role="main">
             
-          <list-coffeetime name="list-coffeetime"></list-coffeetime>
-          <register-coffeetime name="register-coffeetime"></register-coffeetime>
+          <list-coffeetime name="list-coffeetime" hour="11.30"></list-coffeetime>
+          
+          <register-coffeetime name="register-coffeetime" coffee-list="coffeeList"></register-coffeetime>
           <my-view404 name="my-view404"></my-view404>
         </iron-pages>
         
@@ -205,6 +206,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       static get properties() {
         return {
+          coffeeList: {
+            type: Array,
+            value: () => {
+              []
+            },
+          },
           page: {
             type: String,
             reflectToAttribute: true,

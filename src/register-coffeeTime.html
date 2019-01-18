@@ -22,16 +22,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">1</div>
+      <div class="circle">{{coffeeList}}</div>
       <h1>View One</h1>
       <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
       <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <button on-click="addCoffeeToList">Add coffee</button>
     </div>
   </template>
-
+  
   <script>
     class RegisterCoffeeTime extends Polymer.Element {
       static get is() { return 'register-coffeetime'; }
+      
+      static get properties() {
+        return {
+          coffeeList: {
+            type: Array,
+            notify: true,
+          }
+        };
+      }
+      
+      addCoffeeToList() {
+        coffeeList.push("Hey");
+      }
+      
     }
 
     window.customElements.define(RegisterCoffeeTime.is, RegisterCoffeeTime);
