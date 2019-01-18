@@ -187,7 +187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           
           <list-coffeetime name="list-coffeetime" coffee-list="{{coffeeList}}"></list-coffeetime>
         
-          <register-coffeetime name="register-coffeetime"></register-coffeetime>
+          <register-coffeetime coffee-list="{{coffeeList}}" name="register-coffeetime"></register-coffeetime>
           <my-view404 name="my-view404"></my-view404>
         </iron-pages>
         
@@ -216,35 +216,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               {
                 hour: "11:35",
                 name: "Cristian Alegría"  
-              },
-              {
-                hour: "11:20",
-                name: "Silvia Gimenez"  
-              },
-              {
-                hour: "11:35",
-                name: "Cristian Alegría"  
-              },
-              {
-                hour: "11:20",
-                name: "Silvia Gimenez"  
-              },
-              {
-                hour: "11:35",
-                name: "Cristian Alegría"  
-              },
-              {
-                hour: "11:20",
-                name: "Silvia Gimenez"  
-              },
-              {
-                hour: "11:35",
-                name: "Cristian Alegría"  
-              },
-              {
-                hour: "11:20",
-                name: "Silvia Gimenez"  
-              },
+              }
             ],
             notify: true,
           },
@@ -273,11 +245,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // If no page was found in the route data, page will be an empty string.
         // Default to 'view1' in that case.
         this.page = page || 'list-coffeetime';
-
-        // Close a non-persistent drawer when the page & route are changed.
-        if (!this.$.drawer.persistent) {
-          this.$.drawer.close();
-        }
       }
 
       _pageChanged(page) {

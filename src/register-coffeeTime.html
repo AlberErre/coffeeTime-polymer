@@ -63,8 +63,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="formContainer">
         
         <div class="inputsDimensions">
-          <paper-input placeholder="Your name..."></paper-input>
-          <paper-input placeholder="Your hour..."></paper-input>  
+          <paper-input placeholder="Your name..." value="{{coffeeName}}"></paper-input>
+          <paper-input placeholder="Your hour..." value="{{coffeeHour}}"></paper-input>  
         </div>
         
         <paper-button raised class="buttonStyling" on-click="addCoffeeToList">
@@ -82,12 +82,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       static get properties() {
         return {
-
+          coffeeList: {
+            type: Array,
+            notify: true,
+          },
+          coffeeName: {
+            type: String,
+            value: "",
+            notify: true,
+          },
+          coffeeHour: {
+            type: String,
+            value: "",
+            notify: true,
+          }
         };
       }
       
       addCoffeeToList() {
-        coffeeList.push("Hey");
+        
+        if(this.coffeeHour && this.coffeeName) {
+          
+          let coffeTime = {
+            hour: this.coffeeHour,
+            name: this.coffeeName
+          };
+          
+          this.push("coffeeList", coffeTime); 
+        }
+              
       }
       
     }
