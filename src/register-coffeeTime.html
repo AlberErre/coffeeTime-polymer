@@ -103,14 +103,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         if(this.coffeeHour && this.coffeeName) {
           
+          let rawCoffeId = new Date().getTime();
+          
           let coffeTime = {
+            id: "" + rawCoffeId + this.coffeeHour + this.coffeeName,
             hour: this.coffeeHour,
             name: this.coffeeName
           };
           
           this.push("coffeeList", coffeTime); 
-        }
-              
+        }    
+      }
+      
+      deleteAllCoffeList() {
+        
+        this.coffeeList = [];
+      }
+      
+      deleteCoffeListItem(id) {
+        
+        coffeeList.map( (element, index) => {
+          if (id == element.id) {
+            this.splice("coffeeList", index, 1);
+          }
+        });
       }
       
     }
