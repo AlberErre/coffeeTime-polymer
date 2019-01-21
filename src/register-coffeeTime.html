@@ -113,22 +113,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           
           this.push("coffeeList", coffeTime); 
         }    
-      }
-      
-      deleteAllCoffeList() {
-        
-        this.coffeeList = [];
-      }
-      
-      deleteCoffeListItem(id) {
-        
-        coffeeList.map( (element, index) => {
-          if (id == element.id) {
-            this.splice("coffeeList", index, 1);
-          }
-        });
-      }
-      
+      }      
     }
 
     window.customElements.define(RegisterCoffeeTime.is, RegisterCoffeeTime);
