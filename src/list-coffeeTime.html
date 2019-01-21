@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="list-coffeetime">
@@ -42,6 +43,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flex-wrap: wrap;
       }
       
+            
+      .deleteButtonStyling {
+        max-height: 30px;
+        min-width: 15vw;
+        background: #ecb879;
+        color: white;
+        font-family: 'Indie Flower';
+        font-size: 1.2em;
+        font-weight: 600;
+        text-transform: lowercase;
+      }
+      
+      .bottomButton {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      
     </style>
     
     <div class="wrapContainer">
@@ -49,14 +69,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           items="{{coffeeList}}"
           as="coffeeListItem">
         <template>
-          <div class="card itemContainer">
-              <h1 class="circle innerText">
-                [[coffeeListItem.hour]]
-              </h1>
-              <h1>
-                [[coffeeListItem.name]]
-              </h1>
+          <div class="card bottomButton">   
+            <div class="itemContainer">
+                <h1 class="circle innerText">
+                  [[coffeeListItem.hour]]
+                </h1>
+                <h1>
+                  [[coffeeListItem.name]]
+                </h1>
+            </div>
+            <paper-button raised class="deleteButtonStyling" on-click="deleteCoffeListItem">
+                Delete
+            </paper-button>
           </div>
+
         </template>
       </dom-repeat>
     </div>
@@ -73,6 +99,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             notify: true,
           }
         };
+      }
+      
+      deleteAllCoffeList() {
+        
+        this.coffeeList = [];
+      }
+      
+      deleteCoffeListItem(event) {
+                
+        this.coffeeList.map( (element, index) => {
+          if (event.model.__data.coffeeListItem.id == element.id) {
+            this.splice("coffeeList", index, 1);
+          }
+        });
       }
       
     }
