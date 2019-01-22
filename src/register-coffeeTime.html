@@ -103,6 +103,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             type: String,
             value: "",
             notify: true,
+          },
+          emptyList: {
+            type: Boolean,
+            notify: true,
           }
         };
       }
@@ -127,6 +131,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           //this.$.coffeeRegisterPopUp.show();
 
           this.clearInputFields();
+          this.emptyList = false;
         }    
       }
       
