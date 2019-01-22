@@ -43,8 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: flex;
         flex-wrap: wrap;
       }
-      
-            
+        
       .deleteButtonStyling {
         max-height: 30px;
         min-width: 15vw;
@@ -61,6 +60,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flex-direction: column;
         justify-content: center;
         align-items: center;
+      }
+
+      .emptyMessage {
+        text-align: center;
+        font-family: 'Indie Flower';
+        font-size: 1.5em;
+        width: 100%;
+        text-align: center;
+        margin-top: 20vh;
       }
       
     </style>
@@ -89,8 +97,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <dom-if if="{{emptyList}}">
         <template>
-          <div>
-            Looks like there are no coffees on the list :(
+          <div class="emptyMessage">
+            Looks like there are no coffees on the list...
           </div>
         </template>
       </dom-if>
