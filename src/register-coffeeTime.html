@@ -55,6 +55,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .inputsDimensions {
         min-width: 35vw;
       }
+
+      paper-toast {
+        font-family: 'Indie Flower';
+        font-size: 1.2em;
+      }
       
     </style>
 
@@ -118,7 +123,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           this.$.coffeeRegisterPopUp.text = "Coffee has been registered!";
 
-          this.$.coffeeRegisterPopUp.show();
+          this.$.coffeeRegisterPopUp.open();
+          //this.$.coffeeRegisterPopUp.show();
 
           this.clearInputFields();
         }    
