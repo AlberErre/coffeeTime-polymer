@@ -64,8 +64,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="formContainer">
         
         <div class="inputsDimensions">
-          <paper-input placeholder="Your name..." value="{{coffeeName}}"></paper-input>
-          <paper-input placeholder="Your hour..." value="{{coffeeHour}}"></paper-input>  
+          <paper-input id="coffeeNameInput" placeholder="Your name..." value="{{coffeeName}}"></paper-input>
+          <paper-input id="coffeeTimeInput" placeholder="Your hour..." value="{{coffeeHour}}"></paper-input>  
         </div>
         
         <paper-button raised class="buttonStyling" on-click="addCoffeeToList">
@@ -119,10 +119,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.coffeeRegisterPopUp.text = "Coffee has been registered!";
 
           this.$.coffeeRegisterPopUp.show();
+
+          this.clearInputFields();
         }    
       }
       
-
+      clearInputFields() {
+        this.$.coffeeNameInput.value = "";
+        this.$.coffeeTimeInput.value = "";
+      }
     }
 
     window.customElements.define(RegisterCoffeeTime.is, RegisterCoffeeTime);
