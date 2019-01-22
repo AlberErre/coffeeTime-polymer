@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-button/paper-toast.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -72,6 +72,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           Add Time
         </paper-button>
 
+        <paper-toast id="coffeeRegisterPopUp"></paper-toast>
+
       </div>
 
     </div>
@@ -112,9 +114,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             name: this.coffeeName
           };
           
-          this.push("coffeeList", coffeTime); 
+          this.push("coffeeList", coffeTime);
+
+          this.$.coffeeRegisterPopUp.text = "Coffee has been registered!";
+
+          this.$.coffeeRegisterPopUp.show();
         }    
-      }      
+      }
+      
+
     }
 
     window.customElements.define(RegisterCoffeeTime.is, RegisterCoffeeTime);
