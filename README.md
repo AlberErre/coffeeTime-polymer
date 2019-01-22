@@ -16,3 +16,11 @@ This serves the app at `http://127.0.0.1:8081`
 
 ![register-coffeeTime](https://raw.githubusercontent.com/AlberErre/coffeeTime-polymer/master/register-coffeTime.png)
 
+### Installing new dependencies
+
+e.g.
+
+```
+bower install --save PolymerElements/paper-toast#2.1.0
+``` 
+
