@@ -185,9 +185,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="my-view404"
             role="main">
           
-          <list-coffeetime name="list-coffeetime" coffee-list="{{coffeeList}}"></list-coffeetime>
+          <list-coffeetime 
+            name="list-coffeetime" 
+            coffee-list="{{coffeeList}}"
+            empty-list={{emptyList}} 
+          >
+          </list-coffeetime>
         
-          <register-coffeetime coffee-list="{{coffeeList}}" name="register-coffeetime"></register-coffeetime>
+          <register-coffeetime 
+            name="register-coffeetime"
+            coffee-list="{{coffeeList}}" 
+            empty-list={{emptyList}} 
+          >
+          </register-coffeetime>
+
           <my-view404 name="my-view404"></my-view404>
         </iron-pages>
         
@@ -220,6 +231,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 id: "1243"
               }
             ],
+            notify: true,
+          },
+          emptyList: {
+            type: Boolean,
+            value: false,
             notify: true,
           },
           page: {

@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-if.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
@@ -42,8 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: flex;
         flex-wrap: wrap;
       }
-      
-            
+        
       .deleteButtonStyling {
         max-height: 30px;
         min-width: 15vw;
@@ -60,6 +60,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flex-direction: column;
         justify-content: center;
         align-items: center;
+      }
+
+      .emptyMessage {
+        text-align: center;
+        font-family: 'Indie Flower';
+        font-size: 1.5em;
+        width: 100%;
+        text-align: center;
+        margin-top: 20vh;
       }
       
     </style>
@@ -85,6 +94,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </template>
       </dom-repeat>
+
+      <dom-if if="{{emptyList}}">
+        <template>
+          <div class="emptyMessage">
+            Looks like there are no coffees on the list...
+          </div>
+        </template>
+      </dom-if>
+      
     </div>
     
   </template>
@@ -97,8 +115,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           coffeeList: {
             type: Array,
             notify: true,
+          },
+          emptyList: {
+            type: Boolean,
+            notify: true,
           }
         };
+      }
+
+      checkIfListIsEmpty() {
+
+        if (this.coffeeList && this.coffeeList.length == 0) {
+          this.emptyList = true;
+        } else {
+          this.emptyList = false;
+        }
       }
       
       deleteAllCoffeList() {
@@ -113,6 +144,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.splice("coffeeList", index, 1);
           }
         });
+
+        this.checkIfListIsEmpty();
       }
       
     }
