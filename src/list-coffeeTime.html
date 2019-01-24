@@ -122,9 +122,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           firebaseDatabase: {
             type: Object,
-            notify: true
+            notify: true,
+            observer: "getCoffeesFromFirebase"
           }
         };
+      }
+
+      getCoffeesFromFirebase() {
+
+        if (typeof this.firebaseDatabase != "undefined" && Object.keys(this.firebaseDatabase).length !== 0) {
+
+          this.firebaseDatabase.ref("CoffeTimeList").on("child_added", snapshot => {
+          let data = snapshot.val();
+
+          this.push("coffeeList", data);
+          });
+        }
+
       }
 
       checkIfListIsEmpty() {
