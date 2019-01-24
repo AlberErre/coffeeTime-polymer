@@ -119,8 +119,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           emptyList: {
             type: Boolean,
             notify: true,
+          },
+          firebaseDatabase: {
+            type: Object,
+            notify: true,
+            observer: "getCoffeesFromFirebase"
           }
         };
+      }
+
+      getCoffeesFromFirebase() {
+
+        if (typeof this.firebaseDatabase != "undefined" && Object.keys(this.firebaseDatabase).length !== 0) {
+
+          this.firebaseDatabase.ref("CoffeTimeList").on("child_added", snapshot => {
+          let data = snapshot.val();
+
+          this.push("coffeeList", data);
+          });
+        }
+
       }
 
       checkIfListIsEmpty() {
@@ -138,14 +156,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       
       deleteCoffeListItem(event) {
+
+        let idToRemove = event.model.__data.coffeeListItem.id;
                 
         this.coffeeList.map( (element, index) => {
-          if (event.model.__data.coffeeListItem.id == element.id) {
+          if (idToRemove == element.id) {
             this.splice("coffeeList", index, 1);
+            this.deleteCoffeeFromFirebase(idToRemove);
           }
         });
 
         this.checkIfListIsEmpty();
+      }
+
+      deleteCoffeeFromFirebase(idToRemove) {
+
+        console.log("Entra!");
+
+        if (typeof this.firebaseDatabase != "undefined" && Object.keys(this.firebaseDatabase).length !== 0) {
+
+
+          this.firebaseDatabase.ref("CoffeTimeList").on('value', data => {
+            data.forEach( (firebaseElement,index) => {
+
+              if (idToRemove == firebaseElement.val().id) {
+                let firebaseElementToDelete = firebaseElement.key;
+                this.firebaseDatabase.ref("CoffeTimeList").child(firebaseElementToDelete).remove();
+              }
+            
+            });
+          });
+        }
       }
       
     }

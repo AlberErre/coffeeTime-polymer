@@ -107,6 +107,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           emptyList: {
             type: Boolean,
             notify: true,
+          },
+          firebaseDatabase: {
+            type: Object,
+            notify: true
           }
         };
       }
@@ -123,7 +127,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             name: this.coffeeName
           };
           
-          this.push("coffeeList", coffeTime);
+          //this.push("coffeeList", coffeTime);
+          this.firebaseDatabase.ref("CoffeTimeList").push(coffeTime);
 
           this.$.coffeeRegisterPopUp.text = "Coffee has been registered!";
 

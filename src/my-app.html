@@ -42,6 +42,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+
 <dom-module id="my-app">
   <link rel="import" type="css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <template>
@@ -52,6 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         display: block;
         padding: 10px;
+        user-select: none;
       }
       
       :host::before {
@@ -169,7 +173,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <div class="indieText headerText">
-              Coffe Time
+              Coffee Time
             </div>
           </app-toolbar>
         </app-header>
@@ -189,6 +193,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             name="list-coffeetime" 
             coffee-list="{{coffeeList}}"
             empty-list={{emptyList}} 
+            firebase-database={{firebaseDatabase}}
           >
           </list-coffeetime>
         
@@ -196,6 +201,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             name="register-coffeetime"
             coffee-list="{{coffeeList}}" 
             empty-list={{emptyList}} 
+            firebase-database={{firebaseDatabase}}
           >
           </register-coffeetime>
 
@@ -233,6 +239,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             ],
             notify: true,
           },
+          firebaseDatabase: {
+            type: Object,
+            value: {},
+            notify: true
+          },
           emptyList: {
             type: Boolean,
             value: false,
@@ -257,6 +268,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return [
           '_routePageChanged(routeData.page)',
         ];
+      }
+
+      ready() { 
+        super.ready();
+
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyBo0aeAoa5asDarMjB7-9XEDLsjDcQNeD8",
+          authDomain: "coffeetime-app-684e2.firebaseapp.com",
+          databaseURL: "https://coffeetime-app-684e2.firebaseio.com",
+          projectId: "coffeetime-app-684e2",
+          storageBucket: "coffeetime-app-684e2.appspot.com",
+          messagingSenderId: "201272635284"
+        };
+
+        firebase.initializeApp(config);
+
+        const reference = "CoffeTimeList";
+
+        const db = firebase.database();
+
+        this.firebaseDatabase = db;
       }
             
       _routePageChanged(page) {
