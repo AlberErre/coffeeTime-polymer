@@ -225,18 +225,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return {
           coffeeList: {
             type: Array,
-            value: () => [
-              {
-                hour: "11:30",
-                name: "Alber Erre",
-                id: "1234"
-              },
-              {
-                hour: "11:35",
-                name: "Cristian Alegría",
-                id: "1243"
-              }
-            ],
+            value: () => [],
             notify: true,
           },
           firebaseDatabase: {
@@ -246,7 +235,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           emptyList: {
             type: Boolean,
-            value: false,
+            value: true,
             notify: true,
           },
           page: {
