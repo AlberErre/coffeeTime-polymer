@@ -2,9 +2,6 @@
 
 This App allows to fit the perfect time to get a coffee with your team ☕️
 
-### Live Demo
-https://coffeetime-app-684e2.firebaseapp.com/
-
 ### Quickstart
 
 ```
