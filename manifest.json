@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App description",
+  "name": "Coffee Time App",
+  "short_name": "Coffee Time",
+  "description": "App to find out who want to take a coffee in the office",
   "icons": [
     {
       "src": "images/manifest/icon-192x192.png",

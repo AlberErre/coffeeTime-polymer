@@ -1,9 +1,10 @@
 {
-  "name": "polymer-starter-kit",
+  "name": "CoffeeTimeApp",
   "authors": [
-    "The Polymer Authors"
+    "Alber Erre (https://github.com/AlberErre)"
   ],
-  "license": "https://polymer.github.io/LICENSE.txt",
+  "main": "index.html",
+  "license": "MIT",
   "dependencies": {
     "app-layout": "PolymerElements/app-layout#^2.0.0",
     "app-route": "PolymerElements/app-route#^2.0.0",
@@ -25,7 +26,7 @@
     "polymer": "^2.0.0"
   },
   "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#^6.0.0"
-  },
-  "private": true
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  }
 }
