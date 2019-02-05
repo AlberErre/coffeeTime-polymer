@@ -24,3 +24,7 @@ e.g.
 bower install --save PolymerElements/paper-toast#2.1.0
 ``` 
 
+##### issues installing polymer-cli?
+
+`--unsafe-perm ` add this to your command
+
